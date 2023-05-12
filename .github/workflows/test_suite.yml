@@ -8,32 +8,37 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:13.2
-        ports: ["5432:5432"] #not sure about this port
+        ports: [ 5432:5432 ] #not sure about this port
         env:
           POSTGRES_DB: to-do-guru-api_test
           POSTGRES_USER: to-do-guru-api
           POSTGRES_PASSWORD: "" #not sure if we need a password here
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
         with:
           ruby-version: '3.1.1'
           bundler-cache: true
+
       - name: Install dependencies
         run: bundle install
+
       - name: Set up database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
+          PGHOST: postgres
           PGUSER: to-do-guru-api
           # DATABASE_URL: "postgres://rails:password@localhost:5432/to-do-guru-api_test" #not sure if this is correct url
         run: bin/rails db:setup
+
       - name: Run tests
         run: bundle exec rake
-
