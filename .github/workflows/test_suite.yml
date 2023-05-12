@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgresql:
+      postgres:
         image: postgres:13.2
         ports: 
-        - 5432:5432 #not sure about this port
+        - 5432/tcp #not sure about this port
         env:
-          POSTGRES_DB: to-do-guru-api_test
-          POSTGRES_USER: to-do-guru-api
+          # POSTGRES_DB: to-do-guru-api_test
+          # POSTGRES_USER: to-do-guru-api
           POSTGRES_PASSWORD: postgres #not sure if we need a password here
         options: >-
           --health-cmd pg_isready
@@ -39,14 +39,13 @@ jobs:
 
       - name: Set up database
         env:
-          PG_HOST: 127.0.0.1
-          POSTGRES_USER: postgres
-          RAILS_ENV: test
-          # POSTGRES_DB: to-do-guru-api_test
-          # POSTGRES_PASSWORD: postgres
+          PG_HOST: postgres
+          PG_USER: postgres
+          PG_DATABASE: to-do-guru-api_test
+          PG_PASSWORD: postgres
+          PG_PORT: ${{ job.services.postgres.ports['5432'] }}
           # DATABASE_URL: "postgres://rails:password@localhost:5432/test" #not sure if this is correct url
-          # PGHOST: localhost
-          # PGUSER: to-do-guru-api
+          # RAILS_ENV: test
         run: bin/rails db:create db:migrate
 
       - name: Run tests
