@@ -17,8 +17,12 @@ jobs:
         # env:
         #   POSTGRES_DB: to-do-guru-api_test
         #   POSTGRES_USER: to-do-guru-api
-        #   POSTGRES_PASSWORD: "" #not sure if we need a password here
-        # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+          POSTGRES_PASSWORD: postgres #not sure if we need a password here
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Check out repository
@@ -36,8 +40,8 @@ jobs:
       - name: Set up database
         env:
           # PG_DATABASE: to-do-guru-api_test
-          # PG_HOST: localhost
-          # PG_PORT: 5432
+          PG_HOST: localhost
+          PG_PORT: 5432
           # PG_USER: to-do-guru-api
           # PG_PASSWORD: ""
           DATABASE_URL: "postgres://rails:password@localhost:5432/test" #not sure if this is correct url
