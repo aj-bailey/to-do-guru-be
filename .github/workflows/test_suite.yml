@@ -46,7 +46,7 @@ jobs:
           PG_PORT: ${{ job.services.postgres.ports['5432'] }}
           # DATABASE_URL: "postgres://rails:password@localhost:5432/test" #not sure if this is correct url
           RAILS_ENV: test
-        run: bin/rails db:create db:migrate
+        run: bin/rails db:create
 
       - name: Run tests
         run: bundle exec rake
