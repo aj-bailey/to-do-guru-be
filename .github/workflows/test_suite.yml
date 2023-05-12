@@ -39,11 +39,11 @@ jobs:
 
       - name: Set up database
         env:
-          # PG_DATABASE: to-do-guru-api_test
+          PG_DATABASE: postgres
           PG_HOST: localhost
           PG_PORT: 5432
-          # PG_USER: to-do-guru-api
-          # PG_PASSWORD: ""
+          PG_USER: postgres
+          PG_PASSWORD: postgres
           DATABASE_URL: "postgres://rails:password@localhost:5432/test" #not sure if this is correct url
           RAILS_ENV: test
           # PGHOST: localhost
