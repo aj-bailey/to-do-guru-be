@@ -14,10 +14,10 @@ jobs:
         image: postgres:13.2
         ports: 
         - 5432:5432 #not sure about this port
-        env:
-          POSTGRES_DB: to-do-guru-api_test
-          POSTGRES_USER: to-do-guru-api
-          POSTGRES_PASSWORD: "" #not sure if we need a password here
+        # env:
+        #   POSTGRES_DB: to-do-guru-api_test
+        #   POSTGRES_USER: to-do-guru-api
+        #   POSTGRES_PASSWORD: "" #not sure if we need a password here
         # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
@@ -35,16 +35,16 @@ jobs:
 
       - name: Set up database
         env:
-          PG_DATABASE: to-do-guru-api_test
-          PG_HOST: localhost
-          PG_PORT: 5432
-          PG_USER: to-do-guru-api
-          PG_PASSWORD: ""
+          # PG_DATABASE: to-do-guru-api_test
+          # PG_HOST: localhost
+          # PG_PORT: 5432
+          # PG_USER: to-do-guru-api
+          # PG_PASSWORD: ""
+          DATABASE_URL: "postgres://rails:password@localhost:5432/test" #not sure if this is correct url
           RAILS_ENV: test
           # PGHOST: localhost
           # PGUSER: to-do-guru-api
-          # DATABASE_URL: "postgres://rails:password@localhost:5432/to-do-guru-api_test" #not sure if this is correct url
-        run: bin/rails db:setup
+        run: bin/rails db:prepare
 
       - name: Run tests
         run: bundle exec rake
