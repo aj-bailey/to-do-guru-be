@@ -47,7 +47,7 @@ jobs:
           # DATABASE_URL: "postgres://rails:password@localhost:5432/test" #not sure if this is correct url
           # PGHOST: localhost
           # PGUSER: to-do-guru-api
-        run: rake db:prepare
+        run: bin/rails db:prepare
 
       - name: Run tests
         run: bundle exec rake
