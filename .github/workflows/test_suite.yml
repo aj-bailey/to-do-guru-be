@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
+      postgresql:
         image: postgres:13.2
         ports: 
         - 5432:5432 #not sure about this port
