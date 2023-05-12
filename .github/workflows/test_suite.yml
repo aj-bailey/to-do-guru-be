@@ -12,7 +12,8 @@ jobs:
     services:
       postgres:
         image: postgres:13.2
-        ports: [ 5432:5432 ] #not sure about this port
+        ports: 
+        - 5432:5432 #not sure about this port
         env:
           POSTGRES_DB: to-do-guru-api_test
           POSTGRES_USER: to-do-guru-api
