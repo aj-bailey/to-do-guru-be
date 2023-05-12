@@ -17,9 +17,6 @@ jobs:
           POSTGRES_DB: to-do-guru-api_test
           POSTGRES_USER: to-do-guru-api
           POSTGRES_PASSWORD: "" #not sure if we need a password here
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/to-do-guru-api_test" #not sure if this is correct url
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -31,7 +28,12 @@ jobs:
       - name: Install dependencies
         run: bundle install
       - name: Set up database
-        run: bin/rails db:prepare
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: to-do-guru-api
+          # DATABASE_URL: "postgres://rails:password@localhost:5432/to-do-guru-api_test" #not sure if this is correct url
+        run: bin/rails db:setup
       - name: Run tests
         run: bundle exec rake
 
