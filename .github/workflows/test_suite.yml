@@ -15,9 +15,9 @@ jobs:
         ports: 
         - 5432/tcp #not sure about this port
         env:
-          # POSTGRES_DB: to-do-guru-api_test
+          POSTGRES_DB: to-do-guru-api_test
           # POSTGRES_USER: to-do-guru-api
-          POSTGRES_PASSWORD: postgres #not sure if we need a password here
+          # POSTGRES_PASSWORD: postgres #not sure if we need a password here
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -39,10 +39,10 @@ jobs:
 
       - name: Set up database
         env:
-          PG_HOST: postgres
-          PG_USER: postgres
+          # PG_HOST: postgres
+          # PG_USER: postgres
           PG_DATABASE: to-do-guru-api_test
-          PG_PASSWORD: postgres
+          # PG_PASSWORD: postgres
           PG_PORT: ${{ job.services.postgres.ports['5432'] }}
           # DATABASE_URL: "postgres://rails:password@localhost:5432/test" #not sure if this is correct url
           RAILS_ENV: test
