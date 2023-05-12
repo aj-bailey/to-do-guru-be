@@ -16,6 +16,7 @@ jobs:
           POSTGRES_DB: to-do-guru-api_test
           POSTGRES_USER: to-do-guru-api
           POSTGRES_PASSWORD: "" #not sure if we need a password here
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
