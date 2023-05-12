@@ -15,7 +15,7 @@ jobs:
         ports: 
         - 5432:5432 #not sure about this port
         env:
-        #   POSTGRES_DB: rails_test
+          POSTGRES_DB: to-do-guru-api_test
           POSTGRES_USER: to-do-guru-api
           POSTGRES_PASSWORD: postgres #not sure if we need a password here
         options: >-
