@@ -44,7 +44,7 @@ jobs:
           PG_DATABASE: to-do-guru-api_test
           PG_PASSWORD: password
           PG_PORT: ${{ job.services.postgres.ports['5432'] }}
-          # DATABASE_URL: "postgres://rails:password@localhost:5432/test" #not sure if this is correct url
+          DATABASE_URL: "postgres://rails:password@localhost:5432/to-do-guru-api_test" #not sure if this is correct url
           RAILS_ENV: test
         run: bin/rails db:create
 
